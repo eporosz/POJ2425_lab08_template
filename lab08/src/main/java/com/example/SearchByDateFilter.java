@@ -22,8 +22,8 @@ public class SearchByDateFilter implements Filter {
         if (searchSettings.getDateFrom() == null && searchSettings.getDateTo() == null) {
             return false;
         }
-        if (searchSettings.getDateFrom() != null || searchSettings.getDateTo() != null) {
-            return !searchSettings.getDateFrom().isAfter(searchSettings.getDateTo());
+        if (searchSettings.getDateFrom() != null && searchSettings.getDateTo() != null) {
+            return searchSettings.getDateFrom().isBefore(searchSettings.getDateTo());
         }
         return true;
     }

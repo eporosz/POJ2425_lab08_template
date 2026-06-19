@@ -25,7 +25,7 @@ public class SearchByMillageFilter implements Filter {
         if (searchSettings.getMilleageFrom() > 0 && searchSettings.getMilleageTo() > 0) {
             return searchSettings.getMilleageFrom() <= searchSettings.getMilleageTo();
         }
-        return (searchSettings.getMilleageFrom() > 0 || searchSettings.getMilleageTo() > 0) && searchSettings.getMilleageFrom() <= searchSettings.getMilleageTo();
+        return true;
     }
 
     @Override

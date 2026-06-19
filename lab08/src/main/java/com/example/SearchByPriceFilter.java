@@ -19,7 +19,13 @@ public class SearchByPriceFilter implements Filter {
 
     @Override
     public boolean canFilter() {
-        return (searchSettings.getPriceFrom() > 0 || searchSettings.getPriceTo() > 0) && searchSettings.getPriceFrom() <= searchSettings.getPriceTo();
+        if (searchSettings.getPriceFrom() <=0 && searchSettings.getPriceTo() <=0) {
+            return false;
+        }
+        if (searchSettings.getPriceFrom() > 0 && searchSettings.getPriceTo() > 0) {
+            return searchSettings.getPriceFrom() <= searchSettings.getPriceTo();
+        }
+        return true;
     }
 
     @Override
