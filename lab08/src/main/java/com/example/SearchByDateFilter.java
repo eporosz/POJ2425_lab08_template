@@ -19,10 +19,13 @@ public class SearchByDateFilter implements Filter {
 
     @Override
     public boolean canFilter() {
-        if (searchSettings.getDateFrom() == null || searchSettings.getDateTo() == null) {
-            return true;
+        if (searchSettings.getDateFrom() == null && searchSettings.getDateTo() == null) {
+            return false;
         }
-        return searchSettings.getDateFrom().isBefore(searchSettings.getDateTo());
+        if (searchSettings.getDateFrom() != null || searchSettings.getDateTo() != null) {
+            return !searchSettings.getDateFrom().isAfter(searchSettings.getDateTo());
+        }
+        return true;
     }
 
     @Override

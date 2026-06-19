@@ -19,6 +19,12 @@ public class SearchByMillageFilter implements Filter {
 
     @Override
     public boolean canFilter() {
+        if (searchSettings.getMilleageFrom() <= 0 && searchSettings.getMilleageTo() <= 0) {
+            return false;
+        }
+        if (searchSettings.getMilleageFrom() > 0 && searchSettings.getMilleageTo() > 0) {
+            return searchSettings.getMilleageFrom() <= searchSettings.getMilleageTo();
+        }
         return (searchSettings.getMilleageFrom() > 0 || searchSettings.getMilleageTo() > 0) && searchSettings.getMilleageFrom() <= searchSettings.getMilleageTo();
     }
 
